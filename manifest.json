@@ -1,0 +1,32 @@
+{
+    "short_name": "Previsão do tempo",
+    "name": "Previsão do tempo",
+    "description": "Aplicação web para consulta da previsão do tempo",
+    "icons": [
+        {
+            "src": "/assets/img/logo-256.png",
+            "type": "image/png",
+            "sizes": "256x256"
+        },
+        {
+            "src": "assets/img/logo-512.png",
+            "type": "image/png",
+            "sizes": "512x512"
+        }
+    ],
+    "start_url": "/",
+    "scope": "/",
+    "display": "standalone",
+    "background_color": "#3367D6",
+    "theme_color": "#3367D6",
+    "share_target": {
+        "action": "/#share",
+        "method": "GET",
+        "enctype": "application/x-www-form-urlencoded",
+        "params": {
+          "title": "title",
+          "text": "text",
+          "url": "url"
+        }
+      }
+}
