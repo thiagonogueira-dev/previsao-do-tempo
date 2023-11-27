@@ -10,26 +10,27 @@ window.addEventListener('load', async function () {
     }
 });
 
+export function configurarBotoes() {
+    document.getElementById('compartilhar').addEventListener('click', async () => {
+        const { compartilharPrevisao } = await import('./compartilhar.js');
+        compartilharPrevisao();
+    });
 
-document.getElementById('compartilhar').addEventListener('click', async () => {
-    const { compartilharPrevisao } = await import('./compartilhar.js');
-    compartilharPrevisao();
-});
+    document.getElementById('pesquisar').addEventListener('click', async (e) => {
+        e.preventDefault();
+        const { obterPrevisao } = await import('./previsao.js');
+        document.getElementById('estiloPrevisao').rel = 'stylesheet';
+        let cidade = document.getElementById('cidade').value;
+        if(cidade){
+            obterPrevisao(cidade);
+        }
+    });
 
-document.getElementById('pesquisar').addEventListener('click', async (e) => {
-    e.preventDefault();
-    const { obterPrevisao } = await import('./previsao.js');
-    document.getElementById('estiloPrevisao').rel = 'stylesheet';
-    let cidade = document.getElementById('cidade').value;
-    if(cidade){
-        obterPrevisao(cidade);
-    }
-})
-
-document.getElementById('localizacao').addEventListener('click', async () => {
-    const { obterLocalizacao } = await import('./localizacao.js');
-    obterLocalizacao();
-})
+    document.getElementById('localizacao').addEventListener('click', async () => {
+        const { obterLocalizacao } = await import('./localizacao.js');
+        obterLocalizacao();
+    })
+}
 
 
 let hash = location.hash;
@@ -42,3 +43,5 @@ if(hash.startsWith('#share')) {
 } else if(hash){
     obterPrevisao();
 }
+
+configurarBotoes();

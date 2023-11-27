@@ -9,10 +9,6 @@ export function conectarAoServidor(cidade) {
 
     eventSource = new EventSource(HOST + `/previsao?cidade=${cidade}`);
 
-    eventSource.addEventListener('open', () => {
-        console.log('conectado!');
-    });
-
     eventSource.onmessage = e => {
         let data = JSON.parse(e.data);
         alert(data.message);

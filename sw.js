@@ -60,7 +60,6 @@ async function networkFirst( e ) {
             response = await cache.match( e.request );
         } else {
             cache.put( e.request, response.clone() );
-            console.log('colocou', e.request, 'em cache');
         }
         return response;
     } catch (error){
