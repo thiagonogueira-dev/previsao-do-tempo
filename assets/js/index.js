@@ -49,14 +49,20 @@ window.addEventListener( 'beforeinstallprompt', e => {
 
 document.getElementById('compartilhar').addEventListener('click', () => {
     let cidadeCodificada = CIDADE_ATUAL.toLowerCase().replace(/ /g, '-');
-    let data = {title: `Previsão do tempo em ${CIDADE_ATUAL}`, text: `Olá! Estou compartilhando a previsão do tempo em ${CIDADE_ATUAL}:`, url: `#${cidadeCodificada}`}
-    navigator.share(data);
+    let info = {title: `Previsão do tempo em ${CIDADE_ATUAL}`, text: `Olá! Estou compartilhando a previsão do tempo em ${CIDADE_ATUAL}:`, url: `#${cidadeCodificada}`}
+    navigator.share(info);
 })
 
 document.getElementById('pesquisar').addEventListener('click', e => {
     e.preventDefault();
     let cidade = document.getElementById('cidade').value;
-    obterPrevisao(cidade);
+    if(cidade){
+        obterPrevisao(cidade);
+    }
+})
+
+document.getElementById('localizacao').addEventListener('click', e => {
+    obterLocalizacao();
 })
 
 
@@ -69,6 +75,4 @@ if(hash.startsWith('#share')) {
     document.getElementById('msg').innerHTML = `<p>Você está visualizando uma previsão do tempo que foi compartilhada</p>`;
 } else if(hash){
     obterPrevisao();
-} else {
-    obterLocalizacao();
 }

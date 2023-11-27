@@ -1,14 +1,16 @@
 import { obterPrevisao } from "./previsao.js";
 
 export async function obterLocalizacao() {
+
+
     try {
-        // const permissao = await navigator.permissions.query({ name:'geolocation' })
-        // if(permissao.state !== 'denied'){
-        navigator.geolocation.getCurrentPosition(localizacaoConcedida, localizacaoNegada);
-        // }
+        let opcoes = {enableHighAccuracy: true, timeout: 5000, maximumAge: 0};
+        navigator.geolocation.getCurrentPosition(localizacaoConcedida, localizacaoNegada, opcoes);
     } catch(e) {
         alert('Erro ao obter localização')
     }
+
+    
 }
 
 
@@ -19,4 +21,10 @@ async function localizacaoConcedida(posicao) {
 
 function localizacaoNegada() {
     document.body.innerHTML += '<p>Localização não concedida</p>';
+    document.getElementById('pesquisar').addEventListener('click', e => {
+        e.preventDefault();
+        let cidade = document.getElementById('cidade').value;
+        obterPrevisao(cidade);
+    })
+    
 }

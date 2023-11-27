@@ -2,19 +2,91 @@
     display: none;
 }
 
+
 body, .img-temp, .info, .metricas {
     display: flex;
 }
 
+html {
+    height: 100%;
+}
+
 body {
+    height: 100%;
     flex-direction: column;
     align-items: center;
+    justify-content: center;
+    background: linear-gradient(to right, rgb(201, 214, 255), rgb(226, 226, 226));
+}
+
+header {
+    display: flex;
+    flex-direction: row;
+    width: 100%;
+    height: 80px;
+    justify-content: center;
+    align-items: center;
+    position: absolute;
+    top: 0;
+}
+
+header img {
+    width: 60px;
+    height: 60px;
+}
+
+header h1 {
+    margin: 0 0 0 15px;
 }
 
 
 #previsao {
     width: 600px;
     flex-direction: column;
+}
+
+#localizacao, #compartilhar {
+    margin-top: 50px;
+    background-color: rgb(11, 136, 209);
+    padding: 8px;
+    border: none;
+    border-radius: 10px;
+    cursor: pointer;
+}
+
+#localizacao:hover, #compartilhar:hover {
+    transform: scale(1.05);
+}
+
+#cidade, #cidade:focus, #pesquisar, #localizacao {
+    border: none;
+}
+
+
+#cidade {
+    background-color: transparent;
+}
+
+#cidade::placeholder {
+    color: black;
+}
+
+#cidade:focus {
+    outline: none;
+    border-color: transparent;
+}
+
+#pesquisar {
+    background-color: transparent;
+    border-left: 1px solid;
+    cursor: pointer;
+}
+
+.busca {
+    border: 1px solid;
+    padding: 7px;
+    border-radius: 15px;
+    margin-top: 10px;
 }
 
 .info {

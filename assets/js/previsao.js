@@ -4,18 +4,6 @@ const LINK_IMGS = 'https://openweathermap.org/img/wn/'
 const HOST_API = 'https://api.openweathermap.org/data/2.5/weather';
 const KEY_API = 'c793f897efe6867343a3872fed738f2e'
 
-const condicoes = [
-    {codigo: '01', descricao: 'Céu limpo'},
-    {codigo: '02', descricao: 'Algumas nuvens'},
-    {codigo: '03', descricao: 'Nublado'},
-    {codigo: '04', descricao: 'Nuvens carregadas'},
-    {codigo: '09', descricao: 'Chuva fina'},
-    {codigo: '10', descricao: 'Chuva'},
-    {codigo: '11', descricao: 'Tempestade'},
-    {codigo: '13', descricao: 'Neve'},
-    {codigo: '50', descricao: 'Névoa'},
-]
-
 export let CIDADE_ATUAL = '';
 
 function obterSituacao(codigo){
@@ -55,6 +43,11 @@ export async function obterPrevisao(cidade, posicao) {
         resp = await fetch(HOST_API + `?q=${cidade}&appid=${KEY_API}&units=metric`);
     }
 
+    if(resp.status === 404) {
+        alert('Cidade não encontrada');
+        return;
+    }
+    
     info = await resp.json();
     localStorage.setItem('info', JSON.stringify(info));
 
@@ -68,7 +61,7 @@ function montarPrevisao(info, offline) {
     let previsao = document.getElementById('previsao');
     previsao.innerHTML = `
         ${offline ? '<p>Você está offline, sua última busca está sendo mostrada</p>' : ''}
-        <h1>${info.name}</h1>
+        <h1>${info.name}, ${info.sys.country}</h1>
         <div class="info">
             <div class="img-temp">
                 <img src="${LINK_IMGS + info.weather[0].icon + '@4x.png'}" alt="clima">
@@ -91,4 +84,5 @@ function montarPrevisao(info, offline) {
     `;
     previsao.classList.remove('d-none');
     document.getElementById('compartilhar').classList.remove('d-none');
+    document.getElementById('localizacao').classList.add('d-none');
 }

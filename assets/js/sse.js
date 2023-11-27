@@ -14,9 +14,7 @@ export function conectarAoServidor(cidade) {
     });
 
     eventSource.onmessage = e => {
-        console.log('a');
         let data = JSON.parse(e.data);
-        console.log(data);
         alert(data.message);
     }
 
