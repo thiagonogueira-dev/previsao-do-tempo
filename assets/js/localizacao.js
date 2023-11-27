@@ -16,6 +16,7 @@ export async function obterLocalizacao() {
 
 async function localizacaoConcedida(posicao) {
     console.log(posicao.coords);
+    document.getElementById('estiloPrevisao').rel = 'stylesheet';
     obterPrevisao(null, posicao);
 }
 
