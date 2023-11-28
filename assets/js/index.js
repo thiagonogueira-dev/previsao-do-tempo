@@ -10,6 +10,13 @@ window.addEventListener('load', async function () {
     }
 });
 
+async function processarDadosPrevisao(){
+    document.getElementById('estiloPrevisao').rel = 'stylesheet';
+    const { obterPrevisao } = await import('./previsao.js');
+    return obterPrevisao;
+}
+
+
 export function configurarBotoes() {
     document.getElementById('compartilhar').addEventListener('click', async () => {
         const { compartilharPrevisao } = await import('./compartilhar.js');
@@ -18,8 +25,7 @@ export function configurarBotoes() {
 
     document.getElementById('pesquisar').addEventListener('click', async (e) => {
         e.preventDefault();
-        const { obterPrevisao } = await import('./previsao.js');
-        document.getElementById('estiloPrevisao').rel = 'stylesheet';
+        const obterPrevisao =  await processarDadosPrevisao();
         let cidade = document.getElementById('cidade').value;
         if(cidade){
             obterPrevisao(cidade);
@@ -41,6 +47,7 @@ if(hash.startsWith('#share')) {
     obterPrevisao();
     document.getElementById('msg').innerHTML = `<p>Você está visualizando uma previsão do tempo que foi compartilhada</p>`;
 } else if(hash){
+    const obterPrevisao =  await processarDadosPrevisao();
     obterPrevisao();
 }
 
