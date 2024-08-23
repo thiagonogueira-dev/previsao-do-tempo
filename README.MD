@@ -1,4 +1,4 @@
-Uma aplicação web progessiva que utiliza a API de geolocalização do navegador para obter a localização do usuário e o informar sobre a previssão do tempo no local. Também é possível compartilhar com outras pessoas a localização (ex: WhatsApp e Telegram) por meio da ShareAPI do navegador.
+Uma aplicação web progressiva que utiliza a API de geolocalização do navegador para obter a localização do usuário e o informar sobre a previsão do tempo no local. Também é possível compartilhar com outras pessoas a localização (ex: WhatsApp e Telegram) por meio da ShareAPI do navegador.
 
 Instruções de uso da aplicação:
 
